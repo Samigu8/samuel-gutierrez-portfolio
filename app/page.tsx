@@ -222,7 +222,7 @@ export default function HomePage() {
                   </span>
                 </div>
                 <a
-                  href="https://github.com/your-repo"
+                  href="https://github.com/Samigu8/PortfolioDemoCS220.git"
                   target="_blank"
                   className="px-4 py-2 rounded-lg bg-gray-700 text-white hover:bg-gray-900 transition"
                 >
@@ -357,7 +357,7 @@ export default function HomePage() {
                 </div>
               </a>
               <a
-                href="https://linkedin.com/in/your-username"
+                href="https://linkedin.com/in/samuelgutierrezcalle"
                 target="_blank"
                 className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg hover:bg-gray-100 transition"
               >
@@ -368,13 +368,13 @@ export default function HomePage() {
                 </div>
               </a>
               <a
-                href="mailto:samuel.gutierrez@university.edu"
+                href="mailto:samuel.gutierrez.calle@gmail.com"
                 className="flex items-center gap-3 p-4 bg-white shadow-md rounded-lg hover:bg-gray-100 transition"
               >
                 <Mail className="w-5 h-5 text-gray-700" />
                 <div>
                   <p className="font-medium">Email</p>
-                  <p className="text-gray-600 text-sm">samuel.gutierrez@university.edu</p>
+                  <p className="text-gray-600 text-sm">samuel.gutierrez.calle@gmail.com</p>
                 </div>
               </a>
             </div>
