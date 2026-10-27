@@ -8,6 +8,7 @@ import {
   CheckCircle,
   Code2,
   Database,
+  Download,
   Github,
   Layers3,
   Linkedin,
@@ -212,6 +213,7 @@ export default function HomePage() {
                 <a href="mailto:samuel.gutierrez.calle@gmail.com" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Mail className="h-5 w-5" /> samuel.gutierrez.calle@gmail.com</a>
                 <a href="https://github.com/Samigu8" target="_blank" rel="noreferrer" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Github className="h-5 w-5" /> github.com/Samigu8</a>
                 <a href="https://linkedin.com/in/samuelgutierrezcalle" target="_blank" rel="noreferrer" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Linkedin className="h-5 w-5" /> LinkedIn</a>
+                <a href="/resume.pdf" download="Samuel_Gutierrez_Resume.pdf" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Download className="h-5 w-5" /> Download my resume</a>
               </div>
             </div>
             <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
