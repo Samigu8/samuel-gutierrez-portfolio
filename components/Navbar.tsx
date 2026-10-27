@@ -28,6 +28,7 @@ export default function Navbar() {
           <div className="hidden md:flex space-x-6">
             <a href="#home" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Home</a>
             <a href="#about" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">About</a>
+            <a href="#experience" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Experience</a>
             <a href="#projects" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Projects</a>
             <a href="#skills" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Skills</a>
             <a href="#contact" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Contact</a>
@@ -49,4 +50,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

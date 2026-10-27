@@ -1,51 +1,47 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
   ArrowUpRight,
-  CheckCircle,
   Code2,
   Database,
   Download,
   Github,
   Layers3,
   Linkedin,
-  Loader2,
   Mail,
   Server,
   ShieldCheck,
   TestTube2,
-  XCircle,
 } from "lucide-react";
 
 const projects = [
   {
     name: "TaskFlow",
     label: "Full-stack task management",
-    description:
-      "A deployed task management platform with secure accounts, per-user ownership, and a focused workflow for organizing work.",
+    description: "Developed a full-stack task management platform supporting authenticated users, PostgreSQL persistence, secure JWT authorization, and automated end-to-end testing.",
     image: "/coding1.jpg",
     repository: "https://github.com/Samigu8/TaskFlow",
+    demo: "https://taskflow-web-1t5q.onrender.com/",
     technologies: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT", "Tailwind CSS"],
   },
   {
     name: "Our Story",
     label: "Authenticated photo sharing",
-    description:
-      "A full-stack application where users create accounts, authenticate securely, and share pictures and descriptions through a responsive interface.",
+    description: "Built an authenticated photo-sharing application with secure account creation, JWT-protected APIs, PostgreSQL persistence, and responsive user flows.",
     image: "/coding2.jpg",
     repository: "https://github.com/Samigu8/Our-Story-App",
+    demo: "https://our-story-app-i80c.onrender.com/",
     technologies: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "JWT"],
   },
   {
     name: "Portfolio Website",
     label: "Personal brand and project showcase",
-    description:
-      "This responsive portfolio, built with TypeScript and Next.js, presents my projects, technical strengths, and experience for software engineering opportunities.",
+    description: "Designed and deployed this responsive portfolio with TypeScript, Next.js, and Tailwind CSS to present full-stack projects and technical strengths.",
     image: "/coding3.jpg",
     repository: "https://github.com/Samigu8/PortfolioDemoCS220",
+    demo: "https://portfolio-demo-cs-220-git-main-samuels-projects-010b2b22.vercel.app/",
     technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Vercel"],
   },
 ];
@@ -84,27 +80,6 @@ const skillGroups = [
 ];
 
 export default function HomePage() {
-  const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setFormStatus("loading");
-    const form = event.currentTarget;
-
-    try {
-      const response = await fetch("https://formspree.io/f/xjkaezko", {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
-      if (!response.ok) throw new Error("The contact form request failed.");
-      form.reset();
-      setFormStatus("success");
-    } catch {
-      setFormStatus("error");
-    }
-  }
-
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <Navbar />
@@ -126,8 +101,8 @@ export default function HomePage() {
                 <a href="#projects" className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">
                   Explore my work
                 </a>
-                <a href="#contact" className="rounded-lg border border-slate-300 px-6 py-3 font-semibold transition hover:border-blue-600 hover:text-blue-700 dark:border-slate-700 dark:hover:border-blue-400 dark:hover:text-blue-400">
-                  Let&apos;s connect
+                <a href="/resume.pdf" download="Samuel_Gutierrez_Resume.pdf" className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 font-semibold transition hover:border-blue-600 hover:text-blue-700 dark:border-slate-700 dark:hover:border-blue-400 dark:hover:text-blue-400">
+                  <Download className="h-5 w-5" /> Download resume
                 </a>
               </div>
               <div className="mt-12 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
@@ -152,10 +127,46 @@ export default function HomePage() {
                 user experiences with dependable APIs, strong data modeling, and security-minded engineering.
               </p>
               <div className="mt-8 grid gap-6 sm:grid-cols-3">
-                <div><p className="font-semibold">Education</p><p className="mt-1 text-slate-600 dark:text-slate-400">BAS Software Development</p></div>
+                <div><p className="font-semibold">Education</p><p className="mt-1 text-slate-600 dark:text-slate-400">Bachelor of Applied Science in Software Development</p><p className="mt-1 text-sm text-slate-500 dark:text-slate-500">3.97 GPA · Expected August 2027</p></div>
                 <div><p className="font-semibold">Based in</p><p className="mt-1 text-slate-600 dark:text-slate-400">Salt Lake City, Utah</p></div>
                 <div><p className="font-semibold">Languages</p><p className="mt-1 text-slate-600 dark:text-slate-400">English &amp; Spanish</p></div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="px-6 py-24">
+          <div className="mx-auto max-w-6xl">
+            <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Experience</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">People-focused work with measurable impact.</h2>
+            <div className="mt-10 space-y-6">
+              <article className="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
+                  <div>
+                    <h3 className="text-xl font-bold">Student Services Representative, Graduation Agent</h3>
+                    <p className="mt-1 font-medium text-blue-700 dark:text-blue-400">BYU-Pathway Worldwide</p>
+                  </div>
+                  <p className="font-medium text-slate-500 dark:text-slate-400">2025–2026</p>
+                </div>
+                <ul className="mt-5 space-y-3 text-slate-600 dark:text-slate-300">
+                  <li>Used Anthology and three additional academic systems to analyze graduation requirements and maintain accurate records for 200+ students.</li>
+                  <li>Compared student progress against expected degree configurations to identify gaps and guide 8–10 students per shift toward timely graduation.</li>
+                  <li>Collaborated with a team of 10 to review records and confirm requirements were met accurately.</li>
+                </ul>
+              </article>
+              <article className="rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+                <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
+                  <div>
+                    <h3 className="text-xl font-bold">Missionary</h3>
+                    <p className="mt-1 font-medium text-blue-700 dark:text-blue-400">The Church of Jesus Christ of Latter-day Saints</p>
+                  </div>
+                  <p className="font-medium text-slate-500 dark:text-slate-400">2022–2024 · Piura, Peru</p>
+                </div>
+                <ul className="mt-5 space-y-3 text-slate-600 dark:text-slate-300">
+                  <li>Led groups of 18–25 missionaries through weekly strategic planning, resulting in a 50% increase in retention.</li>
+                  <li>Managed housing, furnishings, and financial resources for 80+ missionaries while ensuring cost-effective operations.</li>
+                </ul>
+              </article>
             </div>
           </div>
         </section>
@@ -178,11 +189,36 @@ export default function HomePage() {
                     <div className="mt-5 flex flex-wrap gap-2">
                       {project.technologies.map((technology) => <span key={technology} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">{technology}</span>)}
                     </div>
-                    <a href={project.repository} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
-                      View repository <ArrowUpRight className="h-4 w-4" />
-                    </a>
+                    <div className="mt-6 flex flex-wrap gap-4">
+                      <a href={project.demo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                        Live demo <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                      <a href={project.repository} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                        GitHub <ArrowUpRight className="h-4 w-4" />
+                      </a>
+                    </div>
                   </div>
                 </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-white px-6 py-20 dark:bg-slate-900">
+          <div className="mx-auto max-w-6xl">
+            <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Highlights</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">What I bring to a team.</h2>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {[
+                "3.97 GPA",
+                "3 deployed full-stack applications",
+                "CI/CD pipeline experience",
+                "Bilingual: English & Spanish",
+                "AWS deployment experience",
+              ].map((highlight) => (
+                <div key={highlight} className="rounded-xl border border-slate-200 p-5 font-semibold dark:border-slate-800">
+                  {highlight}
+                </div>
               ))}
             </div>
           </div>
@@ -204,7 +240,7 @@ export default function HomePage() {
         </section>
 
         <section id="contact" className="px-6 py-24">
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+          <div className="mx-auto max-w-6xl">
             <div>
               <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Get in touch</p>
               <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Let&apos;s build something useful.</h2>
@@ -216,16 +252,6 @@ export default function HomePage() {
                 <a href="/resume.pdf" download="Samuel_Gutierrez_Resume.pdf" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Download className="h-5 w-5" /> Download my resume</a>
               </div>
             </div>
-            <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
-              <input type="text" name="name" placeholder="Your name" required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
-              <input type="email" name="email" placeholder="Your email" required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
-              <textarea name="message" placeholder="Tell me about your project or opportunity..." rows={5} required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
-              <button type="submit" disabled={formStatus === "loading"} className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:opacity-70">
-                {formStatus === "loading" ? <><Loader2 className="h-5 w-5 animate-spin" /> Sending...</> : "Send message"}
-              </button>
-              {formStatus === "success" && <p className="flex items-center gap-2 text-sm text-green-600"><CheckCircle className="h-4 w-4" /> Message sent successfully.</p>}
-              {formStatus === "error" && <p className="flex items-center gap-2 text-sm text-red-600"><XCircle className="h-4 w-4" /> Something went wrong. Please try again.</p>}
-            </form>
           </div>
         </section>
       </main>
