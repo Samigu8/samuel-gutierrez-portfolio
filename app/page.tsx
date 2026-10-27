@@ -20,7 +20,7 @@ const projects = [
   {
     name: "TaskFlow",
     label: "Full-stack task management",
-    description: "Developed a full-stack task management platform supporting authenticated users, PostgreSQL persistence, secure JWT authorization, and automated end-to-end testing.",
+    description: "Developed and deployed a full-stack task management platform supporting authenticated users, PostgreSQL persistence, secure JWT authorization, and per-user ownership checks on every task. Added backend integration tests, Playwright end-to-end tests, GitHub Actions CI, Docker containerization, and Render deployment.",
     image: "/coding1.jpg",
     repository: "https://github.com/Samigu8/TaskFlow",
     demo: "https://taskflow-web-1t5q.onrender.com/",
@@ -91,7 +91,7 @@ export default function HomePage() {
                 Software Development Student
               </p>
               <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
-                I build reliable products from idea to deployment.
+                I build secure, tested full-stack applications from idea to deployment.
               </h1>
               <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
                 I&apos;m Samuel Gutierrez, a software development student with a 3.97 GPA who builds tested,
@@ -180,8 +180,11 @@ export default function HomePage() {
             </div>
             <div className="grid gap-7 lg:grid-cols-3">
               {projects.map((project) => (
-                <article key={project.name} className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl dark:bg-slate-900 dark:ring-slate-800">
-                  <img src={project.image} alt={`${project.name} project`} className="h-48 w-full object-cover" />
+                <article key={project.name} className={`flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl dark:bg-slate-900 dark:ring-slate-800 ${project.name === "TaskFlow" ? "lg:col-span-2" : ""}`}>
+                  <div className="relative">
+                    <img src={project.image} alt={`${project.name} project`} className={`w-full object-cover ${project.name === "TaskFlow" ? "h-64" : "h-48"}`} />
+                    {project.name === "TaskFlow" && <span className="absolute left-5 top-5 rounded-full bg-blue-700 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white">Featured project</span>}
+                  </div>
                   <div className="flex flex-1 flex-col p-6">
                     <p className="text-sm font-semibold text-blue-700 dark:text-blue-400">{project.label}</p>
                     <h3 className="mt-2 text-2xl font-bold">{project.name}</h3>
