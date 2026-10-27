@@ -1,7 +1,7 @@
 # My Portfolio Website 🌐
 
-This is my personal portfolio built with **Next.js** and **Tailwind CSS**.  
-It showcases my background, projects, skills, and contact information.  
+This is my personal portfolio built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
+It showcases my background, top three full-stack projects, technical skills, and contact information.
 Created as part of my coursework at Ensign College.
 
 ---
@@ -16,8 +16,8 @@ Created as part of my coursework at Ensign College.
 ## 📂 Sections
 - **Home**: Intro with hero section.
 - **About Me**: Profile photo, background, and academic focus.
-- **Projects**: Showcase of my coding projects, each with summaries, icons, and repo links.
-- **Skills & Expertise**: Programming languages, tools, and mathematical background.
+- **Projects**: TaskFlow, Our Story, and my portfolio website.
+- **Skills & Expertise**: Languages, full-stack frameworks, databases, security, testing, DevOps, and cloud platforms.
 - **Contact**: Form and links to GitHub, LinkedIn, and email.
 
 ---

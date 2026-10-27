@@ -1,425 +1,232 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import {
+  ArrowUpRight,
+  CheckCircle,
   Code2,
   Database,
-  GitBranch,
-  Terminal,
-  Calculator,
-  BookOpen,
-  FunctionSquare,
-  Sigma,
-  Layers,
-  Network,
-  Binary,
-  BarChart3,
-  FolderCode,
   Github,
+  Layers3,
   Linkedin,
-  Mail,
   Loader2,
-  CheckCircle,
+  Mail,
+  Server,
+  ShieldCheck,
+  TestTube2,
   XCircle,
-  Moon,
-  Sun,
 } from "lucide-react";
 
+const projects = [
+  {
+    name: "TaskFlow",
+    label: "Full-stack task management",
+    description:
+      "A deployed task management platform with secure accounts, per-user ownership, and a focused workflow for organizing work.",
+    image: "/coding1.jpg",
+    repository: "https://github.com/Samigu8/TaskFlow",
+    technologies: ["React", "Node.js", "Express", "PostgreSQL", "Prisma", "JWT", "Tailwind CSS"],
+  },
+  {
+    name: "Our Story",
+    label: "Authenticated photo sharing",
+    description:
+      "A full-stack application where users create accounts, authenticate securely, and share pictures and descriptions through a responsive interface.",
+    image: "/coding2.jpg",
+    repository: "https://github.com/Samigu8/Our-Story-App",
+    technologies: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "JWT"],
+  },
+  {
+    name: "Portfolio Website",
+    label: "Personal brand and project showcase",
+    description:
+      "This responsive portfolio, built with TypeScript and Next.js, presents my projects, technical strengths, and experience for software engineering opportunities.",
+    image: "/coding3.jpg",
+    repository: "https://github.com/Samigu8/PortfolioDemoCS220",
+    technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Vercel"],
+  },
+];
+
+const skillGroups = [
+  {
+    title: "Languages",
+    icon: <Code2 className="h-5 w-5" />,
+    skills: ["JavaScript", "TypeScript", "Python", "Java", "SQL", "HTML", "CSS"],
+  },
+  {
+    title: "Frontend & backend",
+    icon: <Layers3 className="h-5 w-5" />,
+    skills: ["React", "Next.js", "Node.js", "Express.js", "REST APIs", "Tailwind CSS"],
+  },
+  {
+    title: "Data & security",
+    icon: <Database className="h-5 w-5" />,
+    skills: ["PostgreSQL", "Prisma ORM", "JWT", "bcrypt", "Database management"],
+  },
+  {
+    title: "Testing & delivery",
+    icon: <TestTube2 className="h-5 w-5" />,
+    skills: ["Playwright", "Integration testing", "GitHub Actions", "CI/CD", "Docker", "Git"],
+  },
+  {
+    title: "Cloud & systems",
+    icon: <Server className="h-5 w-5" />,
+    skills: ["AWS EC2", "Render", "Vercel", "Linux", "Windows", "Virtual machines"],
+  },
+  {
+    title: "Professional strengths",
+    icon: <ShieldCheck className="h-5 w-5" />,
+    skills: ["Secure authentication", "Penetration testing", "GitHub pull requests", "English & Spanish"],
+  },
+];
+
 export default function HomePage() {
-  const [theme, setTheme] = useState("light");
   const [formStatus, setFormStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  // --- Persist theme ---
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) setTheme(savedTheme);
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
-  const toggleTheme = () => setTheme(theme === "light" ? "dark" : "light");
-
-  const programmingSkills = [
-    { name: "Java", icon: <Code2 className="w-5 h-5" /> },
-    { name: "Python", icon: <Code2 className="w-5 h-5" /> },
-    { name: "JavaScript", icon: <Code2 className="w-5 h-5" /> },
-    { name: "C++", icon: <Code2 className="w-5 h-5" /> },
-    { name: "Git", icon: <GitBranch className="w-5 h-5" /> },
-    { name: "Linux", icon: <Terminal className="w-5 h-5" /> },
-    { name: "SQL", icon: <Database className="w-5 h-5" /> },
-    { name: "Spring Boot", icon: <Layers className="w-5 h-5" /> },
-  ];
-
-  const mathSkills = [
-    { name: "Mathematical Proofs", icon: <BookOpen className="w-5 h-5" /> },
-    { name: "Set Theory", icon: <FunctionSquare className="w-5 h-5" /> },
-    { name: "Discrete Mathematics", icon: <Calculator className="w-5 h-5" /> },
-    { name: "Series & Sequences", icon: <Sigma className="w-5 h-5" /> },
-    { name: "Graph Theory", icon: <Network className="w-5 h-5" /> },
-    { name: "Algorithm Analysis", icon: <BarChart3 className="w-5 h-5" /> },
-    { name: "Logic Programming", icon: <Binary className="w-5 h-5" /> },
-    { name: "Combinatorics", icon: <Sigma className="w-5 h-5" /> },
-  ];
-
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     setFormStatus("loading");
-
-    const form = e.currentTarget;
-    const data = new FormData(form);
+    const form = event.currentTarget;
 
     try {
       const response = await fetch("https://formspree.io/f/xjkaezko", {
         method: "POST",
-        body: data,
+        body: new FormData(form),
         headers: { Accept: "application/json" },
       });
-
-      if (response.ok) {
-        setFormStatus("success");
-        form.reset();
-      } else {
-        setFormStatus("error");
-      }
+      if (!response.ok) throw new Error("The contact form request failed.");
+      form.reset();
+      setFormStatus("success");
     } catch {
       setFormStatus("error");
     }
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-
-
+    <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 transition-colors duration-300 dark:bg-slate-950 dark:text-slate-100">
       <Navbar />
-
-      <main className="flex-grow text-gray-900 dark:text-gray-100">
-        {/* --- Hero Section --- */}
-        <section
-          id="home"
-          className="h-screen flex flex-col justify-center items-center text-center bg-white dark:bg-gray-900 px-6 transition-colors duration-300"
-        >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-heading font-bold mb-6">
-            Computer Science Student & Problem Solver
-          </h1>
-          <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl md:text-2xl max-w-2xl md:max-w-3xl leading-relaxed mb-8">
-            Passionate about algorithms, mathematical proofs, and building efficient solutions. Currently exploring
-            the intersection of computer science theory and practical application.
-          </p>
-          <a
-            href="#contact"
-            className="bg-gray-700 text-white px-8 py-4 rounded-lg font-semibold hover:bg-gray-800 hover:-translate-y-1 shadow-md hover:shadow-lg transition-all duration-300"
-          >
-            Get in Touch
-          </a>
-        </section>
-
-        {/* --- About Section --- */}
-        <section
-          id="about"
-          className="min-h-screen flex flex-col md:flex-row items-center bg-white dark:bg-gray-800 text-black dark:text-gray-100 px-6 py-20 relative transition-colors duration-300"
-        >
-          <span className="absolute top-8 left-6 bg-gray-700 text-white px-3 py-1 rounded-full text-sm font-semibold">
-            About Me
-          </span>
-
-          <div className="md:w-1/2 flex justify-center mb-10 md:mb-0">
-            <img
-              src="/headshot.jpg"
-              alt="Samuel"
-              className="rounded-xl shadow-lg w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover"
-            />
-          </div>
-
-          <div className="md:w-1/2 md:pl-12">
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              Bridging Theory and Practice in Computer Science
-            </h2>
-            <p className="mb-6 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
-              I'm a passionate Computer Science student with a deep love for mathematical proofs, algorithmic thinking,
-              and elegant code. I enjoy tackling complex problems and finding efficient solutions through both
-              theoretical analysis and practical implementation.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <h3 className="font-semibold">Major</h3>
-                <p className="text-gray-700 dark:text-gray-300">Computer Science</p>
-                <h3 className="font-semibold mt-4">Focus Areas</h3>
-                <p className="text-gray-700 dark:text-gray-300">Algorithms & Proofs</p>
-              </div>
-
-              <div>
-                <h3 className="font-semibold">Favorite Language</h3>
-                <p className="text-gray-700 dark:text-gray-300">Java & Python</p>
-                <h3 className="font-semibold mt-4">Current Year</h3>
-                <p className="text-gray-700 dark:text-gray-300">Junior</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-{/* --- Projects Section --- */}
-<section id="projects" className="py-16 px-6 bg-white dark:bg-gray-900 transition-colors duration-300">
-  <div className="max-w-6xl mx-auto">
-    <h2 className="text-3xl font-bold mb-4 text-center text-black dark:text-white">Projects</h2>
-    <p className="text-gray-600 dark:text-gray-300 mb-12 text-center">
-      A showcase of my work combining computer science theory with practical implementation.
-    </p>
-
-    <div className="grid md:grid-cols-3 gap-6">
-      {/* Project 1 */}
-      <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow-md transition-colors duration-300">
-        <img
-          src="/coding1.jpg"
-          alt="Dessert Shop"
-          className="rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-semibold flex items-center gap-2 mb-2 text-gray-800 dark:text-gray-100">
-          <FolderCode className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-          Dessert Shop App
-        </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          A Java-based application to manage desserts, track customer orders, and handle admin tasks.
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Code2 className="w-4 h-4" /> Java
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Binary className="w-4 h-4" /> OOP
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Database className="w-4 h-4" /> Database
-          </span>
-        </div>
-        <a
-          href="https://github.com/Ensign-College/CS115-Lab3a-8b-DessertShop-Samigu8.git"
-          target="_blank"
-          className="px-4 py-2 rounded-lg bg-gray-700 dark:bg-gray-600 text-white hover:bg-gray-900 dark:hover:bg-gray-500 transition"
-        >
-          View Repository
-        </a>
-      </div>
-
-      {/* Project 2 */}
-      <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow-md transition-colors duration-300">
-        <img
-          src="/coding3.jpg"
-          alt="Portfolio Website"
-          className="rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-semibold flex items-center gap-2 mb-2 text-gray-800 dark:text-gray-100">
-          <FolderCode className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-          Portfolio Website
-        </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          A Next.js + Tailwind CSS project showcasing my work and experience, built to match a Figma design.
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Code2 className="w-4 h-4" /> Next.js
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Binary className="w-4 h-4" /> Tailwind
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Database className="w-4 h-4" /> Design Integration
-          </span>
-        </div>
-        <a
-          href="https://github.com/Samigu8/PortfolioDemoCS220.git"
-          target="_blank"
-          className="px-4 py-2 rounded-lg bg-gray-700 dark:bg-gray-600 text-white hover:bg-gray-900 dark:hover:bg-gray-500 transition"
-        >
-          View Repository
-        </a>
-      </div>
-
-      {/* Project 3 */}
-      <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl shadow-md transition-colors duration-300">
-        <img
-          src="/coding2.jpg"
-          alt="Generic Coding Project"
-          className="rounded-lg mb-4"
-        />
-        <h3 className="text-xl font-semibold flex items-center gap-2 mb-2 text-gray-800 dark:text-gray-100">
-          <FolderCode className="w-5 h-5 text-gray-700 dark:text-gray-200" />
-          BlackJack Game
-        </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
-          A Prolog implementation of a simplified BlackJack game, focusing on logic programming and algorithm design.
-        </p>
-        <div className="flex flex-wrap gap-2 mb-4">
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Code2 className="w-4 h-4" /> Prolog
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Binary className="w-4 h-4" /> Logic
-          </span>
-          <span className="flex items-center gap-1 px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-200">
-            <Database className="w-4 h-4" /> Algorithms
-          </span>
-        </div>
-        <a
-          href="https://github.com/Ensign-College/CS115-Lab9a-10b-BlackJack-Samigu8.git"
-          target="_blank"
-          className="px-4 py-2 rounded-lg bg-gray-700 dark:bg-gray-600 text-white hover:bg-gray-900 dark:hover:bg-gray-500 transition"
-        >
-          View Repository
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-        {/* --- Skills Section --- */}
-        <section id="skills" className="py-16 px-6 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Skills</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white dark:bg-gray-900 shadow-md rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <Code2 className="w-5 h-5" /> Programming Languages & Tools
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                  {programmingSkills.map((skill, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-gray-200"
-                    >
-                      {skill.icon}
-                      <span>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-white dark:bg-gray-900 shadow-md rounded-2xl p-6">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                  <Calculator className="w-5 h-5" /> Mathematics & Logic
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-2 gap-3">
-                  {mathSkills.map((skill, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 p-2 bg-gray-100 dark:bg-gray-700 rounded-lg text-gray-700 dark:text-gray-200"
-                    >
-                      {skill.icon}
-                      <span>{skill.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- Contact Section --- */}
-        <section id="contact" className="py-16 px-6 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
-            <div className="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6">
-              <h3 className="text-xl font-semibold mb-2">Send me a message</h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Feel free to reach out about projects, opportunities, or just to chat about algorithms and math!
+      <main className="flex-grow">
+        <section id="home" className="relative overflow-hidden px-6 pb-24 pt-40 sm:pt-48">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <p className="mb-5 font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">
+                Software Development Student
               </p>
-
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name"
-                  required
-                  className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-gray-700 focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email"
-                  required
-                  className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-gray-700 focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                />
-                <textarea
-                  name="message"
-                  placeholder="Your message..."
-                  rows={4}
-                  required
-                  className="w-full border border-gray-300 dark:border-gray-700 rounded-lg px-4 py-2 focus:ring-2 focus:ring-gray-700 focus:outline-none bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
-                ></textarea>
-
-                <button
-                  type="submit"
-                  disabled={formStatus === "loading"}
-                  className="w-full flex justify-center items-center gap-2 px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-900 transition disabled:opacity-70"
-                >
-                  {formStatus === "loading" ? (
-                    <>
-                      <Loader2 className="w-5 h-5 animate-spin" /> Sending...
-                    </>
-                  ) : (
-                    "Send Message"
-                  )}
-                </button>
-              </form>
-
-              {formStatus === "success" && (
-                <p className="flex items-center gap-2 mt-4 text-green-600 dark:text-green-400 font-medium">
-                  <CheckCircle className="w-5 h-5" /> Message sent successfully!
-                </p>
-              )}
-              {formStatus === "error" && (
-                <p className="flex items-center gap-2 mt-4 text-red-600 dark:text-red-400 font-medium">
-                  <XCircle className="w-5 h-5" /> Something went wrong. Please try again.
-                </p>
-              )}
+              <h1 className="text-5xl font-bold tracking-tight sm:text-7xl">
+                I build reliable products from idea to deployment.
+              </h1>
+              <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
+                I&apos;m Samuel Gutierrez, a software development student with a 3.97 GPA who builds tested,
+                deployed full-stack applications with React, Node.js, and PostgreSQL.
+              </p>
+              <div className="mt-9 flex flex-wrap gap-4">
+                <a href="#projects" className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-700/20 transition hover:-translate-y-0.5 hover:bg-blue-800">
+                  Explore my work
+                </a>
+                <a href="#contact" className="rounded-lg border border-slate-300 px-6 py-3 font-semibold transition hover:border-blue-600 hover:text-blue-700 dark:border-slate-700 dark:hover:border-blue-400 dark:hover:text-blue-400">
+                  Let&apos;s connect
+                </a>
+              </div>
+              <div className="mt-12 flex flex-wrap gap-3 text-sm text-slate-600 dark:text-slate-300">
+                {["Full-stack development", "Secure authentication", "Automated testing", "Cloud deployment"].map((item) => (
+                  <span key={item} className="rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold mb-4">Connect with me</h3>
-
-              <a
-                href="https://github.com/Samigu8"
-                target="_blank"
-                className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 shadow-md rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-              >
-                <Github className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-                <div>
-                  <p className="font-medium">GitHub</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Check out my repositories</p>
-                </div>
-              </a>
-
-              <a
-                href="https://linkedin.com/in/samuelgutierrezcalle"
-                target="_blank"
-                className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 shadow-md rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-              >
-                <Linkedin className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-                <div>
-                  <p className="font-medium">LinkedIn</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Connect with me professionally</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:samuel.gutierrez.calle@gmail.com"
-                className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 shadow-md rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-              >
-                <Mail className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-                <div>
-                  <p className="font-medium">Email</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">samuel.gutierrez.calle@gmail.com</p>
-                </div>
-              </a>
+        <section id="about" className="bg-white px-6 py-24 dark:bg-slate-900">
+          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[0.8fr_1.2fr] md:items-center">
+            <img src="/headshot.jpg" alt="Samuel Gutierrez" className="mx-auto h-72 w-72 rounded-3xl object-cover shadow-xl ring-8 ring-slate-100 dark:ring-slate-800" />
+            <div>
+              <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">About me</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Curious by nature. Practical by design.</h2>
+              <p className="mt-6 text-lg leading-8 text-slate-600 dark:text-slate-300">
+                I enjoy turning complex requirements into clear, maintainable software. My work blends thoughtful
+                user experiences with dependable APIs, strong data modeling, and security-minded engineering.
+              </p>
+              <div className="mt-8 grid gap-6 sm:grid-cols-3">
+                <div><p className="font-semibold">Education</p><p className="mt-1 text-slate-600 dark:text-slate-400">BAS Software Development</p></div>
+                <div><p className="font-semibold">Based in</p><p className="mt-1 text-slate-600 dark:text-slate-400">Salt Lake City, Utah</p></div>
+                <div><p className="font-semibold">Languages</p><p className="mt-1 text-slate-600 dark:text-slate-400">English &amp; Spanish</p></div>
+              </div>
             </div>
+          </div>
+        </section>
+
+        <section id="projects" className="px-6 py-24">
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-12 max-w-2xl">
+              <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Selected work</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Three products that show how I build.</h2>
+              <p className="mt-4 text-lg text-slate-600 dark:text-slate-300">From secure APIs to polished interfaces, these are my top deployed applications.</p>
+            </div>
+            <div className="grid gap-7 lg:grid-cols-3">
+              {projects.map((project) => (
+                <article key={project.name} className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-xl dark:bg-slate-900 dark:ring-slate-800">
+                  <img src={project.image} alt={`${project.name} project`} className="h-48 w-full object-cover" />
+                  <div className="flex flex-1 flex-col p-6">
+                    <p className="text-sm font-semibold text-blue-700 dark:text-blue-400">{project.label}</p>
+                    <h3 className="mt-2 text-2xl font-bold">{project.name}</h3>
+                    <p className="mt-3 flex-1 leading-7 text-slate-600 dark:text-slate-300">{project.description}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {project.technologies.map((technology) => <span key={technology} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-300">{technology}</span>)}
+                    </div>
+                    <a href={project.repository} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 font-semibold text-blue-700 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300">
+                      View repository <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="skills" className="bg-slate-900 px-6 py-24 text-white dark:bg-slate-950">
+          <div className="mx-auto max-w-6xl">
+            <p className="font-semibold uppercase tracking-[0.2em] text-blue-400">Technical toolkit</p>
+            <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Skills I bring to a team.</h2>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {skillGroups.map((group) => (
+                <div key={group.title} className="rounded-2xl border border-slate-700 bg-slate-800/60 p-6">
+                  <h3 className="flex items-center gap-3 text-lg font-semibold">{group.icon}{group.title}</h3>
+                  <div className="mt-5 flex flex-wrap gap-2">{group.skills.map((skill) => <span key={skill} className="rounded-md bg-slate-700 px-3 py-1.5 text-sm text-slate-200">{skill}</span>)}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="px-6 py-24">
+          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2">
+            <div>
+              <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Get in touch</p>
+              <h2 className="mt-3 text-3xl font-bold sm:text-4xl">Let&apos;s build something useful.</h2>
+              <p className="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-300">I&apos;m seeking a software engineering internship and would love to connect about opportunities, projects, or technology.</p>
+              <div className="mt-8 space-y-3">
+                <a href="mailto:samuel.gutierrez.calle@gmail.com" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Mail className="h-5 w-5" /> samuel.gutierrez.calle@gmail.com</a>
+                <a href="https://github.com/Samigu8" target="_blank" rel="noreferrer" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Github className="h-5 w-5" /> github.com/Samigu8</a>
+                <a href="https://linkedin.com/in/samuelgutierrezcalle" target="_blank" rel="noreferrer" className="flex items-center gap-3 font-medium hover:text-blue-700 dark:hover:text-blue-400"><Linkedin className="h-5 w-5" /> LinkedIn</a>
+              </div>
+            </div>
+            <form onSubmit={handleSubmit} className="space-y-4 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+              <input type="text" name="name" placeholder="Your name" required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
+              <input type="email" name="email" placeholder="Your email" required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
+              <textarea name="message" placeholder="Tell me about your project or opportunity..." rows={5} required className="w-full rounded-lg border border-slate-300 bg-transparent px-4 py-3 outline-none focus:border-blue-600 dark:border-slate-700" />
+              <button type="submit" disabled={formStatus === "loading"} className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-700 px-5 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:opacity-70">
+                {formStatus === "loading" ? <><Loader2 className="h-5 w-5 animate-spin" /> Sending...</> : "Send message"}
+              </button>
+              {formStatus === "success" && <p className="flex items-center gap-2 text-sm text-green-600"><CheckCircle className="h-4 w-4" /> Message sent successfully.</p>}
+              {formStatus === "error" && <p className="flex items-center gap-2 text-sm text-red-600"><XCircle className="h-4 w-4" /> Something went wrong. Please try again.</p>}
+            </form>
           </div>
         </section>
       </main>
-
       <Footer />
     </div>
   );
