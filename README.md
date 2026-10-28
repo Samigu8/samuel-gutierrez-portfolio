@@ -7,7 +7,7 @@ Created as part of my coursework at Ensign College.
 ---
 
 ## 🔗 Links
-- **Live Website:** [https://portfolio-demo-cs-220-git-main-samuels-projects-010b2b22.vercel.app?_vercel_share=oj6xxqNdneIwlEOjbTklFDDrHbbrlv6I](https://portfolio-demo-cs-220-git-main-samuels-projects-010b2b22.vercel.app?_vercel_share=oj6xxqNdneIwlEOjbTklFDDrHbbrlv6I)
+- **Live Website:** [https://portfolio-demo-cs-220.vercel.app/](https://portfolio-demo-cs-220.vercel.app/)
 - **Repository:** [https://github.com/Samigu8/Portfolio-Website.git](https://github.com/Samigu8/Portfolio-Website.git)
 
 ---

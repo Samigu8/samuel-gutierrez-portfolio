@@ -41,7 +41,7 @@ const projects = [
     description: "Designed and deployed this responsive portfolio with TypeScript, Next.js, and Tailwind CSS to present full-stack projects and technical strengths.",
     image: "/coding3.jpg",
     repository: "https://github.com/Samigu8/PortfolioDemoCS220",
-    demo: "https://portfolio-demo-cs-220-git-main-samuels-projects-010b2b22.vercel.app/",
+    demo: "https://portfolio-demo-cs-220.vercel.app/",
     technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Vercel"],
   },
 ];
