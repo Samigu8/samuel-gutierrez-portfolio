@@ -1,14 +1,14 @@
 # My Portfolio Website 🌐
 
 This is my personal portfolio built with **Next.js**, **TypeScript**, and **Tailwind CSS**.
-It showcases my background, top three full-stack projects, technical skills, and contact information.
+It showcases my background, two full-stack applications, portfolio website, technical skills, and contact information.
 Created as part of my coursework at Ensign College.
 
 ---
 
 ## 🔗 Links
-- **Live Website:** [https://portfolio-demo-cs-220.vercel.app/](https://portfolio-demo-cs-220.vercel.app/)
-- **Repository:** [https://github.com/Samigu8/Portfolio-Website.git](https://github.com/Samigu8/Portfolio-Website.git)
+- **Live Website:** [https://samuelgutierrez-portfolio.vercel.app/](https://samuelgutierrez-portfolio.vercel.app/)
+- **Repository:** [https://github.com/Samigu8/samuel-gutierrez-portfolio](https://github.com/Samigu8/samuel-gutierrez-portfolio)
 
 ---
 
@@ -16,6 +16,7 @@ Created as part of my coursework at Ensign College.
 ## 📂 Sections
 - **Home**: Intro with hero section.
 - **About Me**: Profile photo, background, and academic focus.
+- **Education**: Bachelor of Applied Science in Software Development with a 3.97 GPA.
 - **Projects**: TaskFlow, Our Story, and my portfolio website.
 - **Skills & Expertise**: Languages, full-stack frameworks, databases, security, testing, DevOps, and cloud platforms.
 - **Contact**: Form and links to GitHub, LinkedIn, and email.
@@ -33,7 +34,7 @@ Created as part of my coursework at Ensign College.
 ## 🚀 Getting Started (for local development)
 Clone the repository:
 ```bash
-git clone https://github.com/Samigu8/Portfolio-Website.git
-cd Portfolio-Website
+git clone https://github.com/Samigu8/samuel-gutierrez-portfolio.git
+cd samuel-gutierrez-portfolio
 npm install
 npm run dev

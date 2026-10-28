@@ -40,8 +40,8 @@ const projects = [
     label: "Personal brand and project showcase",
     description: "Designed and deployed this responsive portfolio with TypeScript, Next.js, and Tailwind CSS to present full-stack projects and technical strengths.",
     image: "/coding3.jpg",
-    repository: "https://github.com/Samigu8/PortfolioDemoCS220",
-    demo: "https://portfolio-demo-cs-220.vercel.app/",
+    repository: "https://github.com/Samigu8/samuel-gutierrez-portfolio",
+    demo: "https://samuelgutierrez-portfolio.vercel.app/",
     technologies: ["TypeScript", "Next.js", "React", "Tailwind CSS", "Vercel"],
   },
 ];
@@ -135,6 +135,22 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section id="education" className="px-6 py-24">
+          <div className="mx-auto max-w-6xl">
+            <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Education</p>
+            <div className="mt-6 rounded-2xl bg-white p-7 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:ring-slate-800">
+              <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-start">
+                <div>
+                  <h2 className="text-2xl font-bold">Bachelor of Applied Science in Software Development</h2>
+                  <p className="mt-2 text-slate-600 dark:text-slate-300">Ensign College</p>
+                </div>
+                <p className="font-semibold text-blue-700 dark:text-blue-400">3.97 GPA</p>
+              </div>
+              <p className="mt-4 text-slate-600 dark:text-slate-300">Expected August 2027</p>
+            </div>
+          </div>
+        </section>
+
         <section id="experience" className="px-6 py-24">
           <div className="mx-auto max-w-6xl">
             <p className="font-semibold uppercase tracking-[0.2em] text-blue-700 dark:text-blue-400">Experience</p>
@@ -214,7 +230,7 @@ export default function HomePage() {
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {[
                 "3.97 GPA",
-                "3 deployed full-stack applications",
+                "2 deployed full-stack applications",
                 "CI/CD pipeline experience",
                 "Bilingual: English & Spanish",
                 "AWS deployment experience",

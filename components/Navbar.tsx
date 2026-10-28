@@ -23,11 +23,12 @@ export default function Navbar() {
   return (
     <nav className="fixed w-full bg-white dark:bg-gray-900 shadow-md z-50 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <span className="font-bold text-xl text-black dark:text-white">Samuel Gutiérrez Calle</span>
+        <span className="font-bold text-xl text-black dark:text-white">Samuel Gutierrez</span>
         <div className="flex items-center space-x-6">
           <div className="hidden md:flex space-x-6">
             <a href="#home" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Home</a>
             <a href="#about" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">About</a>
+            <a href="#education" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Education</a>
             <a href="#experience" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Experience</a>
             <a href="#projects" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Projects</a>
             <a href="#skills" className="text-black dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-400 transition">Skills</a>
